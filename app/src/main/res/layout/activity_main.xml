@@ -10,13 +10,14 @@
         android:id="@+id/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
         android:theme="@style/ToolbarTheme_Red">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="메모장"
             android:fontFamily="@font/jalnan"
-            android:textColor="@color/white"
+            android:textColor="@color/main_001"
             android:textSize="16sp"/>
     </com.google.android.material.appbar.MaterialToolbar>
 

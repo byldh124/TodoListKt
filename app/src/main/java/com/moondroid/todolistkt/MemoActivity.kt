@@ -13,8 +13,10 @@ import java.util.*
 
 class MemoActivity : AppCompatActivity() {
 
-    lateinit var dbHelper : DBHelper
-    lateinit var database :SQLiteDatabase
+    lateinit var dbHelper: DBHelper
+    lateinit var database: SQLiteDatabase
+    lateinit var txt: String
+    lateinit var time: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,11 +27,21 @@ class MemoActivity : AppCompatActivity() {
 
         dbHelper = DBHelper(this, "newdb.db", null, 1)
         database = dbHelper.writableDatabase
+        if (intent.getStringExtra("txt") != null) {
+            txt = intent.getStringExtra("txt")!!
+
+        }
+        if (intent.getStringExtra("time") != null) {
+            time = intent.getStringExtra("time")!!
+        }
+        if (txt != null) {
+            etMemo.setText(txt)
+        }
     }
 
     @SuppressLint("ResourceAsColor")
     fun clickColor(view: View) {
-        when(view.id){
+        when (view.id) {
             R.id.color1 -> etMemo.setBackgroundColor(R.color.memo_001)
             R.id.color2 -> etMemo.setBackgroundColor(R.color.memo_002)
             R.id.color3 -> etMemo.setBackgroundColor(R.color.memo_003)
@@ -39,14 +51,21 @@ class MemoActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             onBackPressed()
         }
         return super.onOptionsItemSelected(item)
     }
 
     fun clickSave(view: View) {
-        var query = "INSERT INTO mytable('txt', 'time') values('"+etMemo.text +"','" + SimpleDateFormat("yyyy.MM.dd HH:mm:ss").format(Date())+"')"
-        database.execSQL(query)
+        if (txt == null || time == null) {
+            var query =
+                "INSERT INTO mytable('txt', 'time') values('" + etMemo.text + "','" + SimpleDateFormat(
+                    "yyyy.MM.dd HH:mm:ss"
+                ).format(Date()) + "')"
+            database.execSQL(query)
+            finish()
+
+        }
     }
 }
