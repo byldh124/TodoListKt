@@ -15,7 +15,7 @@ class DBHelper(
     override fun onCreate(db: SQLiteDatabase) {
         var sql : String = "CREATE TABLE if not exists mytable (" +
                 "_id integer primary key autoincrement," +
-                "txt text, time text)"
+                "txt text, time text, color text)"
 
         db.execSQL(sql)
     }

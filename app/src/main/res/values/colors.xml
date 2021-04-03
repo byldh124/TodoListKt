@@ -11,9 +11,9 @@
     <color name="main_001">#FFF7313E</color>
 
     <color name="memo_001">#FFF1EAAD</color>
-    <color name="memo_002">#E3A8ED</color>
-    <color name="memo_003">#A9D2F3</color>
-    <color name="memo_004">#A8EFE8</color>
-    <color name="memo_005">#F3A6C0</color>
+    <color name="memo_002">#ffE3A8ED</color>
+    <color name="memo_003">#ffA9D2F3</color>
+    <color name="memo_004">#ffA8EFE8</color>
+    <color name="memo_005">#ffF3A6C0</color>
 
 </resources>

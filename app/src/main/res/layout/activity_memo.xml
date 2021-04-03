@@ -40,7 +40,8 @@
         android:background="@color/memo_001"
         android:textColor="#ff333333"
         android:hint="메모를 입력해주세요"
-        android:padding="8dp"
+        android:textSize="16sp"
+        android:padding="16dp"
         android:gravity="top"/>
 
     <RelativeLayout

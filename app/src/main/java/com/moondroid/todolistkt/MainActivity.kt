@@ -1,21 +1,20 @@
 package com.moondroid.todolistkt
 
 import android.content.Intent
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Adapter
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.NumberFormatException
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var dbHelper : DBHelper
-    lateinit var database :SQLiteDatabase
-    lateinit var memos : ArrayList<MemoVO>
-    lateinit var adapter : MemoAdapter
+    lateinit var dbHelper: DBHelper
+    lateinit var database: SQLiteDatabase
+    lateinit var memos: ArrayList<MemoVO>
+    lateinit var adapter: MemoAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.add){
+        if (item.itemId == R.id.add) {
             var intent = Intent(this, MemoActivity::class.java)
             startActivity(intent)
         }
@@ -49,12 +48,15 @@ class MainActivity : AppCompatActivity() {
         recycler_main.adapter = adapter
 
         var query = "SELECT * FROM mytable"
-        var c = database.rawQuery(query,null)
-        while(c.moveToNext()){
-            val txt = c.getString(c.getColumnIndex("txt"))
+        var c = database.rawQuery(query, null)
+        while (c.moveToNext()) {
+            val no = c.getInt(c.getColumnIndex("_id"))
+            val txt = c.getString(c.getColumnIndex("txt")).replace("||","\n")
             val time = c.getString(c.getColumnIndex("time"))
-            memos.add(MemoVO(txt, time))
-            adapter.notifyItemInserted(memos.size-1)
+            val color = c.getString(c.getColumnIndex("color"))
+
+            memos.add(MemoVO(no, txt, time, color))
+            adapter.notifyItemInserted(memos.size - 1)
         }
     }
 }

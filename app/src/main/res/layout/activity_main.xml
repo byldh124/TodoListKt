@@ -21,11 +21,18 @@
             android:textSize="16sp"/>
     </com.google.android.material.appbar.MaterialToolbar>
 
+    <FrameLayout
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/toolbar_main"
+        android:background="@color/main_001"/>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar_main"
+        android:layout_below="@id/line"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"/>
 
